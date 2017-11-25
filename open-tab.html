@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="styles.css" type="text/css" />
+	<style>
+		body {
+			font-size: 18px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1 id="title">Open Tab MTC</h1>
+
+	<p>This button will write this file to the downloads directory and open it in a new tab.</p>
+
+		<input id="init" type="button" value="Save and open New Tab"></input>
+
+	<ul>
+		<li>Works in FF for Windows</li>
+		<li>Dos NOT work in FF for Ubuntu 17.10</li>
+	</ul>
+
+
+	<script>
+		var html = document.getElementsByTagName("html");
+		var title = document.getElementById("title");
+
+		var init = document.getElementById("init");
+		init.addEventListener("click", handleInit);
+
+		function handleInit() {
+			title.innerText = "This is a new Page in a new Tab!"
+
+			window.postMessage({
+				txt: html[0].innerHTML,
+				message: "init"
+			}, "*");
+			title.innerText = "Open Tab MTC"
+		}
+	</script>
+</body>
+
+</html>
